@@ -2410,7 +2410,8 @@ remove_queued_request(Ref, State) ->
     end.
 
 %% @private
--ifdef(deprecated_19).
+-ifdef(OTP_RELEASE).
+%% OTP 19 or higher
 mk_reqid() -> erlang:phash2(crypto:strong_rand_bytes(10)). % only has to be unique per-pid
 -else.
 mk_reqid() -> erlang:phash2(crypto:rand_bytes(10)). % only has to be unique per-pid
